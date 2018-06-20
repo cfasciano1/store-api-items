@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: store-api-items
+  jackson:
+    default-property-inclusion: non-null

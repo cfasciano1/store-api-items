@@ -1,1 +1,8 @@
-
+bin/
+logs/
+target/
+.project
+.settings
+.classpath
+.springBeans
+.mvn
