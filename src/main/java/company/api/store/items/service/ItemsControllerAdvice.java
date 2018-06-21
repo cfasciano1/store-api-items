@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import company.api.store.items.exceptions.InvalidItemActionException;
+import company.api.store.items.exception.InvalidItemActionException;
 import company.api.store.items.model.Response;
 
 @ControllerAdvice
@@ -23,9 +23,15 @@ public class ItemsControllerAdvice {
 	}
 	
 	@ExceptionHandler(ConversionFailedException.class)
-	public ResponseEntity<Response<Void>> handleIllegalArgumentException(ConversionFailedException exception){
+	public ResponseEntity<Response<Void>> handleConversionFailedException(ConversionFailedException exception){
 		LOGGER.error(exception.getMessage());
 		return new ResponseEntity<>(new Response<Void>("Scan failed. Not a valid item."), HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<Response<Void>> handleUncaughtException(Exception exception){
+		LOGGER.error(String.format("Unhandled exception thrown. message=\"%s\"" , exception.getMessage()));
+		return new ResponseEntity<>(new Response<Void>("Internal Server Error"), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	

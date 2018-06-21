@@ -3,7 +3,7 @@ package company.api.store.items.data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import company.api.store.items.exceptions.InvalidItemActionException;
+import company.api.store.items.exception.InvalidItemActionException;
 import company.api.store.items.model.Item;
 import company.api.store.items.model.ItemCart;
 

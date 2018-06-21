@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import company.api.store.items.exceptions.InvalidItemActionException;
+import company.api.store.items.exception.InvalidItemActionException;
 import company.api.store.items.model.Item;
 import company.api.store.items.model.ItemCart;
 import company.api.store.items.model.Response;
@@ -50,7 +50,7 @@ public class ItemsRestController {
     @DeleteMapping(path = "/item/{item}", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiResponses(value = {
         	@ApiResponse(code = 200, message = "Item successfully removed to cart"),
-        	@ApiResponse(code = 400, message = "Cannot remove invalid/nonexistant item"),
+        	@ApiResponse(code = 400, message = "Cannot remove invalid/nonexistent item"),
         	@ApiResponse(code = 500, message = "Error occured while removing item" )})
     public ResponseEntity<Response<ItemCart>> removeItem(@ApiParam(value = "item", required = true)@PathVariable Item item) throws InvalidItemActionException {
     	ItemCart cart = itemsService.removeItem(item, 1);
